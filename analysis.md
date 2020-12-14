@@ -27,12 +27,12 @@ Hotal:
 
     blog:
         -title
-        -tags
+        -tags*
         -image
         -create at
         -author
-        -comments
-        -search
+        -comments*
+        -search*
         -view_count
 
     about:
