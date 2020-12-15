@@ -6,13 +6,13 @@ from taggit.managers import TaggableManager
 # Create your models here.
 class Post(models.Model):
     title=models.CharField(max_length=50)
-    description=models.TextField(max_length=9000 ,null=True , blank=True)
     tags = TaggableManager()
     image=models.ImageField(upload_to='photo/',null=True , blank=True)
     create_at=models.DateField(default=timezone.now)
     author=models.ForeignKey(User,related_name='post_authar',on_delete=models.CASCADE)
     viewcount=models.IntegerField(default=0)
     category=models.ForeignKey('category',related_name='post_Category',on_delete=models.CASCADE)
+    description=models.TextField(null=True , blank=True)
 
     def __str__(self):
         return self.title

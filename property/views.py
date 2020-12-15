@@ -14,12 +14,15 @@ class RoomList(FilterView):
     model=models.Room
     filterset_class = propertyFilter
     template_name= 'property/room_list.html'
+    paginate_by = 6
+    
 
 
 class RoomDetail(FormMixin,DetailView):
     model=models.Room
     form_class = RoomBookForm
     success_url = '/rooms/' 
+    
 
 
     def get_context_data(self, **kwargs):
