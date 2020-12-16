@@ -62,8 +62,7 @@ class RoomReview(models.Model):
 
 class RoomBook(models.Model):
     room=models.ForeignKey(Room,related_name='room_book',on_delete=models.CASCADE)
-    name=models.CharField(max_length=200)
-    email=models.EmailField(max_length=200)
+    name=models.ForeignKey(User,related_name='user_book',on_delete=models.CASCADE)
     from_data=models.DateField(default=timezone.now)
     to_data=models.DateField(default=timezone.now)
     guest=models.IntegerField(default=1)
@@ -71,7 +70,7 @@ class RoomBook(models.Model):
 
 
     def __str__(self):
-        return self.name
+        return str(self.name)
 
 
 
