@@ -27,6 +27,13 @@ urlpatterns = [
     path('about/',include('about.urls' , namespace='about')),
     path('blog/',include('blog.urls' , namespace='blog')),
     
+
+
+
+
+
+
+    path('api-auth/', include('rest_framework.urls'))
 ]
 
 
