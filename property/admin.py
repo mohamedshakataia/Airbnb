@@ -9,7 +9,7 @@ class RoomImagesTabular(admin.TabularInline):
 
 
 class RoomAdmin(SummernoteModelAdmin,admin.ModelAdmin):
-    list_display= ['name','price','location']
+    list_display= ['name','price','location' ,'get_avg_rating','check_avablity']
     inlines=[RoomImagesTabular,]
     summernote_fields = ('description',)
     prepopulated_fields = {'slug':("name",)}
@@ -21,6 +21,10 @@ admin.site.register(models.Room,RoomAdmin)
 # admin.site.register(models.RoomImage)
 admin.site.register(models.category)
 admin.site.register(models.RoomReview)
-admin.site.register(models.RoomBook)
+
+class RoomBookAdmin(admin.ModelAdmin):
+    list_display= ['room','Inprogress' ]
+   
+admin.site.register(models.RoomBook,RoomBookAdmin)
 
 

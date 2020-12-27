@@ -28,6 +28,32 @@ class Room(models.Model):
     def __str__(self):
         return self.name
 
+    def check_avablity(self):
+        all_avablities=self.room_book.all()
+        now=timezone.now().date()
+        for reserver in all_avablities :
+            if now > reserver.to_date:
+                return 'Available'
+            elif now > reserver.from_date and now < reserver.to_date:
+                return f'In Progress to {reserver.to_date} 12 PM'
+
+        return 'Available'
+
+    
+    def get_avg_rating(self):
+        all_review=self.room_review.all()
+        ratting=0
+        for review in all_review:
+            ratting += review.rate
+
+            return round(ratting /len(all_review),2)
+
+        else:
+            return '-'
+    
+
+
+
 class RoomImage(models.Model):
     room=models.ForeignKey(Room,related_name='room_image',on_delete=models.CASCADE)
     image=models.ImageField(upload_to='room_image/')
@@ -35,6 +61,9 @@ class RoomImage(models.Model):
     
     def __str__(self):
         return str(self.room)
+
+
+    
 
 
 
@@ -51,11 +80,14 @@ class category(models.Model):
 
 class RoomReview(models.Model):
     room=models.ForeignKey(Room,related_name='room_review',on_delete=models.CASCADE)
+    author=models.ForeignKey(User,related_name='review_author',on_delete=models.CASCADE)
     rate=models.IntegerField()
     feedback=models.TextField(max_length=400)
 
     def __str__(self):
         return str(self.room)
+
+    
 
 
 
@@ -63,14 +95,20 @@ class RoomReview(models.Model):
 class RoomBook(models.Model):
     room=models.ForeignKey(Room,related_name='room_book',on_delete=models.CASCADE)
     name=models.ForeignKey(User,related_name='user_book',on_delete=models.CASCADE)
-    from_data=models.DateField(default=timezone.now)
-    to_data=models.DateField(default=timezone.now)
+    from_date=models.DateField(default=timezone.now)
+    to_date=models.DateField(default=timezone.now)
     guest=models.IntegerField(default=1)
     children=models.IntegerField(default=0)
 
 
     def __str__(self):
         return str(self.name)
+
+
+    def Inprogress(self):
+        now=timezone.now().date()
+        return now > self.from_date and now < self.to_date
+    Inprogress.boolean=True
 
 
 
