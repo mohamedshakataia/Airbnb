@@ -11,7 +11,7 @@ class Room(models.Model):
     name=models.CharField(max_length=50)
     price=models.IntegerField()
     description=models.TextField(max_length=20000)
-    location=models.CharField(max_length=200)
+    location=models.ForeignKey('place',related_name='room_place',on_delete=models.CASCADE)
     image=models.ImageField(upload_to='photo/')
     category=models.ForeignKey('category',related_name='room_Category',on_delete=models.CASCADE)
     
@@ -69,6 +69,7 @@ class RoomImage(models.Model):
 
 class category(models.Model):
     name=models.CharField(max_length=60)
+    icon=models.CharField(max_length=50)
 
     def __str__(self):
         return self.name
@@ -112,3 +113,9 @@ class RoomBook(models.Model):
 
 
 
+class place(models.Model):
+    name=models.CharField(max_length=50)
+    image=models.ImageField(upload_to='place/')
+    
+    def __str__(self):
+        return self.name

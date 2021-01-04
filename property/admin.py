@@ -26,5 +26,7 @@ class RoomBookAdmin(admin.ModelAdmin):
     list_display= ['room','Inprogress' ]
    
 admin.site.register(models.RoomBook,RoomBookAdmin)
+admin.site.register(models.place)
+
 
 
