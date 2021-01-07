@@ -27,6 +27,9 @@ urlpatterns = [
     path('about/',include('about.urls' , namespace='about')),
     path('blog/',include('blog.urls' , namespace='blog')),
     path('',include('setting.urls' , namespace='home')),
+    path('rest-auth/', include('dj_rest_auth.urls')),
+    path('rest-auth/signup/', include('dj_rest_auth.registration.urls'))
+    
  
  
     

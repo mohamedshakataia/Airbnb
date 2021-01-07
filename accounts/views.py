@@ -55,6 +55,11 @@ def user_reservation(request):
     myreservation=RoomBook.objects.filter(name=request.user)
     return render(request, 'profile/MyReservation.html',{'myreservation':myreservation})
 
+def MyRoom(request):
+    MyRooms=Room.objects.filter(owner=request.user)
+    return render(request, 'profile/MyRoom.html',{'MyRooms':MyRooms})
+
+
 
 
 def feedback(request,slug):

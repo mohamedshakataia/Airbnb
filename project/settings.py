@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
+
     'property',
     'blog',
     'about',
@@ -49,9 +51,15 @@ INSTALLED_APPS = [
     'setting',
     'rest_framework',
     'rest_framework.authtoken',
+    'dj_rest_auth',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'dj_rest_auth.registration',
 
     
 ]
+SITE_ID = 1
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
@@ -150,3 +158,12 @@ MEDIA_URL='/media/'
 MEDIA_ROOT=  BASE_DIR / "media"
 
 X_FRAME_OPTIONS = 'SAMEORIGIN'
+
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'dj88co@gmail.com'
+EMAIL_HOST_PASSWORD = 'thbvcwozgiwmdgji'
+EMAIL_USE_TLS = True
+EMAIL_PORT = '587'

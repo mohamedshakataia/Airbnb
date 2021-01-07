@@ -2,6 +2,8 @@ from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
 from taggit.managers import TaggableManager
+from django.urls import reverse
+
 
 # Create your models here.
 class Post(models.Model):
@@ -21,6 +23,10 @@ class Post(models.Model):
     class Meta:
         verbose_name = 'Post'
         verbose_name_plural = 'Posts'
+
+    
+    def get_absolute_url(self):
+        return reverse('blog:detail',kwargs={'pk': self.pk})
 
 
 
